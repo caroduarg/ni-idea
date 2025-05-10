@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Ni Idea</title>
+    <link rel="stylesheet" href="{% static 'css/biblioteca.css' %}">
+    <link rel="icon" href="{% static 'img/libro-icono.png' %}">
+</head>
+<body>
+    <nav class="navbar-biblioteca">
+        <div class="logo">
+            <img src="{% static 'img/libro-logo.png' %}" alt="Logo Biblioteca">
+        </div>
+        <ul class="nav-links">
+            <li><a class="{% if request.path == '/' %}active{% endif %}" href="{% url 'inicio' %}">Inicio</a></li>
+            <li><a class="{% if 'catalogo' in request.path %}active{% endif %}" href="{% url 'catalogo' %}">Categoria</a></li>
+            <li><a class="{% if 'prestamos' in request.path %}active{% endif %}" href="{% url 'prestamos' %}">Novedades</a></li>
+            <li><a class="{% if 'miembros' in request.path %}active{% endif %}" href="{% url 'miembros' %}">Miembros</a></li>
+            <li><a class="{% if 'buscar' in request.path %}active{% endif %}" href="{% url 'buscar' %}">Buscar Libros</a></li>
+        </ul>
+        <div class="user-actions">
+            {% if user.is_authenticated %}
+                <a href="{% url 'perfil' %}" class="btn-perfil">Mi Perfil</a>
+                <a href="{% url 'logout' %}" class="btn-logout">Cerrar Sesión</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn-login">Iniciar Sesión</a>
+                <a href="{% url 'registro' %}" class="btn-registro">Registrarse</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
