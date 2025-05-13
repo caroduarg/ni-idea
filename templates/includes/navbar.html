@@ -14,21 +14,21 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Mi Blog</a> <!-- arreglar la url {% url 'post_list' %} -->
+            <a class="navbar-brand" href="{% url 'post_list' %}">Mi Blog</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Inicio</a> <!-- arreglar la url {% url 'post_list' %} -->
+                        <a class="nav-link" href="{% url 'post_list' %}">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'post_create' %}">Crear Post</a>
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <form action="#" method="post" class="my-auto"> <!-- arregla el action va {% url 'logout'%}-->
+                    <form action="#" method="post" class="my-auto"> 
                         {% csrf_token %}
                         <button type="submit" class="btn btn-outline-light">
                             Cerrar Sesión
