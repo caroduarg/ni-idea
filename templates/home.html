@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Bienvenido!</h1>
+        </header>
+        <div class="auth-forms">
+                <div class="login-form">
+                    <h2>Iniciar sesión</h2>
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        {{ login_form.as_p }}
+                        <button type="submit" class="btn">Iniciar sesión</button>
+                    </form>
+                </div>
+                <div class="signup-prompt">
+                    <p>¿No tienes una cuenta?</p>
+                    <a href="{% url 'signup' %}" class="btn">Regístrate aquí</a>
+                </div>
+        </div>
+    </div>
+</body>
+</html>
