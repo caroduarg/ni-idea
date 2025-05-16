@@ -123,5 +123,5 @@ STATICFILES_DIRS = [BASE_DIR/'static/'] # carpeta creada para almacenar archivos
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'post-list'
+LOGIN_REDIRECT_URL = 'post_list'
 LOGOUT_REDIRECT_URL = 'home'
