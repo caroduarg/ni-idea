@@ -1,0 +1,20 @@
+{% extends 'includes/navbar.html' %}
+
+{% block content %}
+
+<div class="delete-container">
+    <form method="post">
+        {% csrf_token %}
+        <p class="delete-message">
+            ¿Estás seguro de que deseas eliminar el post <strong>"{{ Book.titulo }}"</strong>?
+            <br>
+            <small>Esta acción no se puede deshacer.</small>
+        </p>
+        <div class="btn-group">
+            <button type="submit" class="btn btn-danger">Confirmar Eliminación</button>
+            <a href="{% url 'post_list' %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
