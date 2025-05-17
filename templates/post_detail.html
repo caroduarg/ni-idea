@@ -20,7 +20,7 @@
         <a href="{% url 'post_list' %}" class="btn btn-outline">← Volver a la lista</a>
         
         {% if user.is_authenticated %}
-            <a href="#" class="btn btn-primary">✏️ Editar Libro</a>
+            <a href="{% url 'post_update' object.pk %}" class="btn btn-primary">✏️ Editar Libro</a>
             <a href="{% url 'post_delete' object.pk %}" class="btn btn-danger">🗑️ Eliminar Libro</a>
         {% endif %}
     </div>

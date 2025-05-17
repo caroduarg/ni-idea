@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView, DeleteView, DetailView # importar las vistas de creación, lista y eliminación
+from django.views.generic import CreateView, ListView, UpdateView # importar las vistas de creación y lista
+from django.views.generic import DeleteView, DetailView # importar las vistas de creación, lista y eliminación
 from .models import Book # importar el modelo de libro
 from django.urls import reverse_lazy # importar la función reverse_lazy para redirigir después de crear un libro
 
@@ -26,3 +27,9 @@ class BookReadView(DetailView): # vista para leer un libro
         template_name = 'post_detail.html' # plantilla para la lectura del libro
         model = Book # modelo para la lectura
         context_object_name = 'post' #cambia el nombre de la lista de objetos
+
+class PostUpdate(UpdateView):
+    template_name = 'post_update.html'
+    model = Book
+    fields = [ 'titulo', 'autor', 'fecha_publicacion', 'paginas', 'idioma', 'image']
+    success_url = reverse_lazy('post_list')

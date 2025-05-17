@@ -28,7 +28,7 @@
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <form action="#" method="post" class="my-auto"> 
+                    <form action="{% url 'logout' %}" method="post" class="my-auto"> 
                         {% csrf_token %}
                         <button type="submit" class="btn btn-outline-light">
                             Cerrar Sesión
