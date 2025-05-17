@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView# importar las vistas de creación y lista
 from .models import Book # importar el modelo de libro
+from django.urls import reverse_lazy # importar la función reverse_lazy para redirigir después de crear un libro
 
 # Create your views here.
 
 class BookCreateView(CreateView):
     template_name = 'post_create.html'  # plantilla para el formulario
-    success_url = '/libros/'  # URL a la que redirigir después de crear el libro
+    success_url=reverse_lazy("post_list")  # URL a la que redirigir después de crear el libro
     # modelo para la creación de libros
     model = Book
     fields = ['titulo', 'autor', 'fecha_publicacion', 'paginas', 'idioma', 'image']  # campos del formulario

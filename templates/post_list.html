@@ -2,28 +2,28 @@
 
 {% block content %}
 
-<div class="posts-container">
-    <div class="posts-header">
-        <h1 class="posts-title">Lista de Posts</h1>
-        <a href="{% url 'post_create' %}" class="create-btn">+ Crear Nuevo Post</a>
+<div class="post-container">
+    <div class="post-header">
+        <h1 class="post-title">Lista de libros</h1>
+        <a href="{% url 'post_create' %}" class="create-btn">+ Crear Nuevo libro</a>
     </div>
 
     {% if lista_de_objects %}
-        <ul class="posts-list">
-            {% for post in lista_de_objects %}
+        <ul class="book-list">
+            {% for Book in lista_de_objects %}
                 <li class="post-item">
                     <div class="post-image-container">
-                        {% if post.image %}
-                            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+                        {% if Book.imagen %}
+                            <img src="{{ post.image.url }}" alt="{{ Book.titulo }}" class="post-image">
                         {% else %}
                             <img src="https://via.placeholder.com/400x200?text=No+Image" alt="Imagen por defecto" class="post-image">
                         {% endif %}
                     </div>
                     <div class="post-content">
-                        <a href="{% url 'post_detail' post.pk %}" class="post-link">{{ post.title }}</a>
+                        <a href="#" class="post-link">{{ Book.titulo }}</a>
                         <div class="post-meta">
-                            {% if post.created_at %}
-                                <span>{{ post.created_at|date:"d M Y" }}</span>
+                            {% if Book.created_at %}
+                                <span>{{ Book.created_at|date:"d M Y" }}</span>
                             {% endif %}
                         </div>
                     </div>
@@ -33,7 +33,7 @@
     {% else %}
         <div class="empty-message">
             <h1>No hay elementos en la base de datos</h1>
-            <p>Puedes crear un nuevo post haciendo clic en el botón "Crear"</p>
+            <p>Puedes crear un nuevo libro haciendo clic en el botón "Crear"</p>
         </div>
     {% endif %}
 </div>
