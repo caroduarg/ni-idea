@@ -13,8 +13,8 @@
             {% for post in lista_de_objects %} 
                 <li class="post-item">
                     <div class="post-image-container">
-                        {% if post.imagen %}
-                            <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}" class="post-image">
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" alt="{{ post.titulo }}" class="post-image">
                         {% else %}
                             <img src="https://via.placeholder.com/400x200?text=No+Image" alt="Imagen por defecto" class="post-image">
                         {% endif %}
