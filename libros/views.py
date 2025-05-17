@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView# importar las vistas de creación y lista
+from django.views.generic import CreateView, ListView # importar las vistas de creación y lista
 from .models import Book # importar el modelo de libro
 
 # Create your views here.
