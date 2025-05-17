@@ -4,47 +4,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Biblioteca{% endblock %}</title>
-    <!-- Bootstrap CSS -->
+    <title>{% block title %}Biblioteca Digital{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Tu CSS personalizado -->
-    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'navbar.css' %}">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-modern">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'post_list' %}">Biblioteca</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            <!-- Logo y marca -->
+            <a class="navbar-brand" href="{% url 'login' %}">
+                <span class="brand-name">Biblioteca</span>
+            </a>
+            
+            <!-- Botón hamburguesa para móviles -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarModern" aria-controls="navbarModern" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+
+            <!-- Contenido principal del navbar -->
+            <div class="collapse navbar-collapse" id="navbarModern">
+                <!-- Menú central -->
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'post_list' %}">Inicio</a>
+                        <a class="nav-link" href="{% url 'login' %}">
+                            <i class="fas fa-home me-1"></i> Inicio
+                        </a>
                     </li>
+                    
+                    <!-- Menú desplegable de Catálogo -->
+                    <li class="nav-item dropdown mega-menu">
+                        <a class="nav-link dropdown-toggle" href="#" id="megaCatalogo" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-book-open me-1"></i> Catálogo
+                        </a>
+                        <ul class="dropdown-menu dropdown-mega" aria-labelledby="megaCatalogo">
+                            <li>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h6 class="dropdown-header text-uppercase">Explorar</h6>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fas fa-star me-2"></i> Novedades
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fas fa-fire me-2"></i> Populares
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h6 class="dropdown-header text-uppercase">Categorías</h6>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fas fa-atom me-2"></i> Ciencia
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fas fa-landmark me-2"></i> Historia
+                                            </a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="px-3 py-2">
+                                                <h6 class="dropdown-header text-uppercase">Buscar</h6>
+                                                <form class="d-flex">
+                                                    <input class="form-control me-2" type="search" placeholder="Buscar en el catálogo..." aria-label="Buscar">
+                                                    <button class="btn btn-search" type="submit">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Sección de Publicaciones -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'post_create' %}">Crear un libro</a>
+                        <a class="nav-link" href="{% url 'post_list' %}">
+                            <i class="fas fa-list-ul me-1"></i> Publicaciones
+                        </a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="{% url 'post_create' %}">
+                            <i class="fas fa-plus-circle me-1"></i> Nueva Publicación
+                        </a>
                     </li>
                 </ul>
-                <div class="d-flex">
-                    <form action="#" method="post" class="my-auto"> 
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-outline-light">
-                            Cerrar Sesión
-                        </button>
-                    </form>
+
+                <!-- Botón de creación destacado (solo desktop) -->
+                <div class="d-none d-lg-block me-3">
+                    <a href="{% url 'post_create' %}" class="btn btn-create">
+                        <i class="fas fa-plus me-1"></i> Crear un libro
+                    </a>
                 </div>
+
+                <!-- Área de usuario -->
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle user-profile" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{% static 'images/user-avatar.png' %}" class="user-avatar" alt="Usuario">
+                            <span class="user-name">{{ user.username }}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="#">
+                                <i class="fas fa-user-circle me-2"></i> Perfil
+                            </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                <i class="fas fa-history me-2"></i> Historial
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#">
+                                <i class="fas fa-sign-out-alt me-2"></i> Cerrar sesión
+                            </a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link btn-login" href="{% url 'login' %}">
+                            <i class="fas fa-sign-in-alt me-1"></i> Ingresar
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Contenido principal -->
-    <div class="container mt-4">
-        {% block content %}{% endblock %}
-    </div>
-
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> 
+</html>
