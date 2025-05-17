@@ -9,21 +9,21 @@
     </div>
 
     {% if lista_de_objects %}
-        <ul class="book-list">
-            {% for Book in lista_de_objects %}
+        <ul class="post-list">
+            {% for post in lista_de_objects %} 
                 <li class="post-item">
                     <div class="post-image-container">
-                        {% if Book.imagen %}
-                            <img src="{{ post.image.url }}" alt="{{ Book.titulo }}" class="post-image">
+                        {% if post.imagen %}
+                            <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}" class="post-image">
                         {% else %}
                             <img src="https://via.placeholder.com/400x200?text=No+Image" alt="Imagen por defecto" class="post-image">
                         {% endif %}
                     </div>
                     <div class="post-content">
-                        <a href="#" class="post-link">{{ Book.titulo }}</a>
+                        <a href="{% url 'post_read' post.pk %}" class="post-link">{{ post.titulo }}</a>
                         <div class="post-meta">
-                            {% if Book.created_at %}
-                                <span>{{ Book.created_at|date:"d M Y" }}</span>
+                            {% if post.created_at %}
+                                <span>{{ post.created_at|date:"d M Y" }}</span>
                             {% endif %}
                         </div>
                     </div>
