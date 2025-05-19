@@ -7,11 +7,13 @@ from django.urls import reverse_lazy # importar la función reverse_lazy para re
 # Create your views here.
 
 class BookCreateView(CreateView):
-    template_name = 'post_create.html'  # plantilla para el formulario
-    success_url=reverse_lazy("post_list")  # URL a la que redirigir después de crear el libro
-    # modelo para la creación de libros
-    model = Book
-    fields = ['titulo', 'autor', 'fecha_publicacion', 'paginas', 'idioma', 'image']  # campos del formulario
+        template_name = 'post_create.html'  # plantilla para el formulario
+        success_url=reverse_lazy("post_list")  # URL a la que redirigir después de crear el libro
+        # modelo para la creación de libros
+        model = Book
+        fields = ['titulo', 'autor', 'fecha_publicacion', 'paginas', 'idioma', 'image']  # campos del formulario
+        success_url=reverse_lazy("post_list") #redirecciona a la url que se le indique, en este caso a la raiz del proyecto
+
 
 class PostListView(ListView):
         template_name = 'post_list.html'
@@ -29,7 +31,7 @@ class BookReadView(DetailView): # vista para leer un libro
         context_object_name = 'post' #cambia el nombre de la lista de objetos
 
 class PostUpdate(UpdateView):
-    template_name = 'post_update.html'
-    model = Book
-    fields = [ 'titulo', 'autor', 'fecha_publicacion', 'paginas', 'idioma', 'image']
-    success_url = reverse_lazy('post_list')
+        template_name = 'post_update.html'
+        model = Book
+        fields = [ 'titulo', 'autor', 'fecha_publicacion', 'paginas', 'idioma', 'image']
+        success_url = reverse_lazy('post_list')
