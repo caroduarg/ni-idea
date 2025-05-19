@@ -1,6 +1,11 @@
 {% extends 'includes/navbar.html' %}
+{% load static %}
+
 
 {% block content %}
+
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+
 
 <div class="detail-container">
     <h1 class="detail-titulo">{{ object.titulo }}</h1>
