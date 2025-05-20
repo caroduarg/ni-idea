@@ -1,17 +1,16 @@
 
 {% extends 'includes/navbar.html' %}
+{% load static %}
+
 
 {% block content %}
-
-<form method="post">
-
-    {% csrf_token %}
-
-    {{form.as_p}}
-
-    <button type="submit">Enviar</button>
-
-</form>
-
-    
-    {% endblock %}
+<link rel="stylesheet" href="{% static 'css/update.css' %}">
+<div class="update-container">
+    <h1 class="update-title">Actualizar Libro</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
+</div>
+{% endblock %}
