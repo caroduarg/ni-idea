@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -31,7 +32,7 @@
         </div>
         
         <div class="logo-container">
-            <a href="{% url 'logout' %}" class="sign-out-btn">
+            <a href="{% url 'home' %}" class="sign-out-btn">
                 Cerrar sesión
             </a>
         </div>
@@ -41,7 +42,11 @@
         {% block content %}
         {% endblock %}
         <h1>¡Biblioteca Ni idea!</h1>
-        <p>EL NUEVO MUNDO DE LOS LIBROS DESCUBRE TU EXPERIENCIA BIENVENIDO.</p>
+        <p>EL NUEVO MUNDO DE LOS LIBROS DESCUBRE TU EXPERIENCIA.</p>
+        <p>¡Bienvenido a la biblioteca Ni idea! Aquí podrás encontrar una amplia variedad de libros para disfrutar y aprender.</p>
+        <p>Explora nuestra colección y descubre nuevas historias que te inspirarán.</p>
     </div>
+    <footer>
+        <p>&copy; 2025 Biblioteca Ni idea. Todos los derechos reservados.</p>
 </body>
 </html>
